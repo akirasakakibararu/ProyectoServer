@@ -34,10 +34,8 @@ public class Albaranes implements java.io.Serializable {
 	@Column(name = "foto_albaran")
 	private byte[] fotoAlbaran;
 
-	@ManyToOne
-	@JoinColumn(name = "id_proveedor", nullable = false)
-	@NotNull(message = "El proveedor es obligatorio")
-	private Proveedores proveedor;
+	@Column(name = "id_proveedor", nullable = false)
+	private int proveedor;
 
 	@Column(name = "fecha_creacion", nullable = false)
 	private Timestamp fechaCreacion;
@@ -45,15 +43,6 @@ public class Albaranes implements java.io.Serializable {
 	@Enumerated(EnumType.STRING)
 	@Column(name = "estado", length = 50)
 	private EstadoAlbaran estado;
-
-	@OneToMany(mappedBy = "albaran", cascade = CascadeType.ALL, orphanRemoval = true)
-	@JsonManagedReference 
-	private Set<Movimientos> movimientos = new HashSet<>();
-
-
-	@OneToMany(mappedBy = "albaran", cascade = CascadeType.ALL, orphanRemoval = true)
-	@JsonManagedReference
-	private Set<DetallesAlbaran> detallesAlbaran = new HashSet<>();
 
 	public enum TipoAlbaran {
 		entrada, salida
@@ -66,24 +55,21 @@ public class Albaranes implements java.io.Serializable {
 	public Albaranes() {
 	}
 
-	public Albaranes(TipoAlbaran tipoAlbaran, Timestamp fechaAlbaran, Proveedores proveedor, Timestamp fechaCreacion) {
+	public Albaranes(TipoAlbaran tipoAlbaran, Timestamp fechaAlbaran, int proveedor, Timestamp fechaCreacion) {
 		this.tipoAlbaran = tipoAlbaran;
 		this.fechaAlbaran = fechaAlbaran;
 		this.proveedor = proveedor;
 		this.fechaCreacion = fechaCreacion;
 	}
 
-	public Albaranes(TipoAlbaran tipoAlbaran, Timestamp fechaAlbaran, byte[] fotoAlbaran, Proveedores proveedor,
-			Timestamp fechaCreacion, EstadoAlbaran estado, Set<Movimientos> movimientos,
-			Set<DetallesAlbaran> detallesAlbaran) {
+	public Albaranes(TipoAlbaran tipoAlbaran, Timestamp fechaAlbaran, byte[] fotoAlbaran, int proveedor,
+			Timestamp fechaCreacion, EstadoAlbaran estado) {
 		this.tipoAlbaran = tipoAlbaran;
 		this.fechaAlbaran = fechaAlbaran;
 		this.fotoAlbaran = fotoAlbaran;
 		this.proveedor = proveedor;
 		this.fechaCreacion = fechaCreacion;
 		this.estado = estado;
-		this.movimientos = movimientos;
-		this.detallesAlbaran = detallesAlbaran;
 	}
 
 	public Integer getIdAlbaran() {
@@ -118,11 +104,11 @@ public class Albaranes implements java.io.Serializable {
 		this.fotoAlbaran = fotoAlbaran;
 	}
 
-	public Proveedores getProveedor() {
+	public int getProveedor() {
 		return proveedor;
 	}
 
-	public void setProveedor(Proveedores proveedor) {
+	public void setProveedor(int proveedor) {
 		this.proveedor = proveedor;
 	}
 
@@ -140,38 +126,6 @@ public class Albaranes implements java.io.Serializable {
 
 	public void setEstado(EstadoAlbaran estado) {
 		this.estado = estado;
-	}
-
-	public Set<Movimientos> getMovimientos() {
-		return movimientos;
-	}
-
-	public void setMovimientos(Set<Movimientos> movimientos) {
-		this.movimientos = movimientos;
-	}
-
-	public Set<DetallesAlbaran> getDetallesAlbaran() {
-		return detallesAlbaran;
-	}
-
-	public void setDetallesAlbaran(Set<DetallesAlbaran> detallesAlbaran) {
-		this.detallesAlbaran = detallesAlbaran;
-	}
-
-	public Set getMovimientoses() {
-		return this.movimientos;
-	}
-
-	public void setMovimientoses(Set movimientoses) {
-		this.movimientos = movimientoses;
-	}
-
-	public Set getDetallesAlbarans() {
-		return this.detallesAlbaran;
-	}
-
-	public void setDetallesAlbarans(Set detallesAlbarans) {
-		this.detallesAlbaran = detallesAlbarans;
 	}
 
 }

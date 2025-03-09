@@ -22,7 +22,6 @@ public class Proveedores implements Serializable {
     private int idProveedor;
 
     @Column(name = "nombre", nullable = false, length = 255)
-    @NotBlank(message = "El nombre es obligatorio")
     private String nombre;
 
     @Column(name = "telefono", length = 50)
@@ -36,13 +35,7 @@ public class Proveedores implements Serializable {
     private String email;
 
     @Column(name = "nif", length = 50, unique = true)
-    @NotNull(message = "El NIF es obligatorio")
     private String nif;
-
-    @OneToMany(mappedBy = "proveedor", cascade = CascadeType.ALL, orphanRemoval = true)
-    @JsonManagedReference
-    private Set<Productos> productos = new HashSet<>();
-
 
     public Proveedores() {
     }
@@ -107,11 +100,4 @@ public class Proveedores implements Serializable {
         this.nif = nif;
     }
 
-    public Set<Productos> getProductos() {
-        return productos;
-    }
-
-    public void setProductos(Set<Productos> productos) {
-        this.productos = productos;
-    }
 }

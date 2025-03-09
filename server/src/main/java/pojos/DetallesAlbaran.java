@@ -21,18 +21,18 @@ public class DetallesAlbaran implements java.io.Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idDetalle;
 
-	@ManyToOne
-	@JoinColumn(name = "id_producto", nullable = false)
-	@JsonBackReference
-	private Productos producto;
 
-	@ManyToOne
-	@JoinColumn(name = "id_albaran", nullable = false)
-	@JsonBackReference
-	private Albaranes albaran;
+	@Column(name = "id_producto", nullable = false)
+
+	private int producto;
+
+
+	@Column(name = "id_albaran", nullable = false)
+
+	private int albaran;
 
 	@Column(name = "precio_unitario", nullable = false, precision = 10, scale = 2)
-	@NotNull(message = "El precio unitario es obligatorio")
+
 	private BigDecimal precioUnitario;
 
 	@Column(name = "cantidad", nullable = false)
@@ -41,7 +41,7 @@ public class DetallesAlbaran implements java.io.Serializable {
 	public DetallesAlbaran() {
 	}
 
-	public DetallesAlbaran(Productos producto, Albaranes albaran, BigDecimal precioUnitario, int cantidad) {
+	public DetallesAlbaran(int producto, int albaran, BigDecimal precioUnitario, int cantidad) {
 		this.producto = producto;
 		this.albaran = albaran;
 		this.precioUnitario = precioUnitario;
@@ -56,19 +56,19 @@ public class DetallesAlbaran implements java.io.Serializable {
 		this.idDetalle = idDetalle;
 	}
 
-	public Productos getProducto() {
+	public int getProducto() {
 		return producto;
 	}
 
-	public void setProducto(Productos producto) {
+	public void setProducto(int producto) {
 		this.producto = producto;
 	}
 
-	public Albaranes getAlbaran() {
+	public int getAlbaran() {
 		return albaran;
 	}
 
-	public void setAlbaran(Albaranes albaran) {
+	public void setAlbaran(int albaran) {
 		this.albaran = albaran;
 	}
 

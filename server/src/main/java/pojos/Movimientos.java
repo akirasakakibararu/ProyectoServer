@@ -16,56 +16,45 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
 
-
 @Entity
 @Table(name = "movimientos")
 public class Movimientos implements java.io.Serializable {
 
-    
 	private static final long serialVersionUID = -5328273247962656318L;
 
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idMovimiento;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int idMovimiento;
 
-	@ManyToOne
-	@JoinColumn(name = "id_usuario", nullable = false)
-	@NotNull(message = "El usuario es obligatorio")
-	@JsonBackReference // Faltaba esto
-	private Usuarios usuario;
+	@Column(name = "id_usuario", nullable = false)
 
-	@ManyToOne
-	@JoinColumn(name = "id_producto", nullable = false)
-	@NotNull(message = "El producto es obligatorio")
-	@JsonBackReference
-	private Productos producto;
+	private int usuario;
 
-	@ManyToOne
-	@JoinColumn(name = "id_albaran", nullable = false)
-	@NotNull(message = "El albarán es obligatorio")
-	@JsonBackReference 
-	private Albaranes albaran;
+	@Column(name = "id_producto", nullable = false)
 
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = false, length = 100)
-    private TipoMovimiento tipo;
+	private int producto;
 
-    @Column(nullable = false)
-    private int cantidad;
+	@Column(name = "id_albaran", nullable = false)
+	private int albaran;
 
-    @Column(name = "fecha_movimiento", nullable = false)
-    private Timestamp fechaMovimiento;
+	@Enumerated(EnumType.STRING)
+	@Column(nullable = false, length = 100)
+	private TipoMovimiento tipo;
 
+	@Column(nullable = false)
+	private int cantidad;
 
-    public enum TipoMovimiento {
-        Alta,
-        Baja
-    }
+	@Column(name = "fecha_movimiento", nullable = false)
+	private Timestamp fechaMovimiento;
+
+	public enum TipoMovimiento {
+		Alta, Baja
+	}
 
 	public Movimientos() {
 	}
 
-	public Movimientos(Usuarios usuarios, Productos productos, Albaranes albaranes, TipoMovimiento tipo, int cantidad,
+	public Movimientos(int usuarios, int productos, int albaranes, TipoMovimiento tipo, int cantidad,
 			Timestamp fechaMovimiento) {
 		this.usuario = usuarios;
 		this.producto = productos;
@@ -83,27 +72,27 @@ public class Movimientos implements java.io.Serializable {
 		this.idMovimiento = idMovimiento;
 	}
 
-	public Usuarios getUsuarios() {
+	public int getUsuarios() {
 		return this.usuario;
 	}
 
-	public void setUsuarios(Usuarios usuarios) {
+	public void setUsuarios(int usuarios) {
 		this.usuario = usuarios;
 	}
 
-	public Productos getProductos() {
+	public int getProductos() {
 		return this.producto;
 	}
 
-	public void setProductos(Productos productos) {
+	public void setProductos(int productos) {
 		this.producto = productos;
 	}
 
-	public Albaranes getAlbaranes() {
+	public int getAlbaranes() {
 		return this.albaran;
 	}
 
-	public void setAlbaranes(Albaranes albaranes) {
+	public void setAlbaranes(int albaranes) {
 		this.albaran = albaranes;
 	}
 

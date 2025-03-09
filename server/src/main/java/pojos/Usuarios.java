@@ -38,17 +38,9 @@ public class Usuarios implements java.io.Serializable {
     @JsonIgnore
     private byte[] fotoPerfil;
 
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = false, length = 100)
-    private Rol rol;
-
     @Column(name = "habilitado")
     private boolean habilitado = true;
 
-    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<Movimientos> movimientos = new HashSet<>();
-
-  
     public enum Rol {
         Empleado,
         Administrador
@@ -62,7 +54,7 @@ public class Usuarios implements java.io.Serializable {
         this.contrasena = contrasena;
         this.nombre = nombre;
         this.email = email;
-        this.rol = rol;
+       
     }
 
     public Usuarios(String contrasena, String nombre, String email, byte[] fotoPerfil, Rol rol, boolean habilitado) {
@@ -70,7 +62,7 @@ public class Usuarios implements java.io.Serializable {
         this.nombre = nombre;
         this.email = email;
         this.fotoPerfil = fotoPerfil;
-        this.rol = rol;
+        
         this.habilitado = habilitado;
     }
 
@@ -115,14 +107,6 @@ public class Usuarios implements java.io.Serializable {
         this.fotoPerfil = fotoPerfil;
     }
 
-    public Rol getRol() {
-        return rol;
-    }
-
-    public void setRol(Rol rol) {
-        this.rol = rol;
-    }
-
     public boolean isHabilitado() {
         return habilitado;
     }
@@ -131,11 +115,4 @@ public class Usuarios implements java.io.Serializable {
         this.habilitado = habilitado;
     }
 
-    public Set<Movimientos> getMovimientos() {
-        return movimientos;
-    }
-
-    public void setMovimientos(Set<Movimientos> movimientos) {
-        this.movimientos = movimientos;
-    }
 }

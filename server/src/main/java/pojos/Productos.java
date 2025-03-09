@@ -22,13 +22,10 @@ public class Productos implements java.io.Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idProducto;
 
-	@ManyToOne
-	@JoinColumn(name = "id_proveedor", nullable = false)
-	@JsonBackReference
-	private Proveedores proveedor;
+	@Column(name = "id_proveedor", nullable = false)
+	private int proveedor;
 
 	@Column(name = "nombre", nullable = false, length = 100)
-	@NotBlank(message = "El nombre es obligatorio")
 	private String nombre;
 
 	@Column(name = "descripcion", columnDefinition = "TEXT")
@@ -40,7 +37,7 @@ public class Productos implements java.io.Serializable {
 	private byte[] foto;
 
 	@Column(name = "precio_unitario", nullable = false, precision = 10, scale = 2)
-	@NotNull(message = "El precio unitario es obligatorio")
+
 	private BigDecimal precioUnitario;
 
 	@Column(name = "stock_actual", nullable = false)
@@ -52,19 +49,10 @@ public class Productos implements java.io.Serializable {
 	@Column(name = "habilitado", columnDefinition = "TINYINT(1)")
 	private boolean habilitado = true;
 
-	@OneToMany(mappedBy = "producto", cascade = CascadeType.ALL, orphanRemoval = true)
-	@JsonManagedReference
-	private Set<Movimientos> movimientos = new HashSet<>();
-
-	@OneToMany(mappedBy = "producto", cascade = CascadeType.ALL, orphanRemoval = true)
-	@JsonManagedReference
-	private Set<DetallesAlbaran> detallesAlbaran = new HashSet<>();
-
 	public Productos() {
 	}
 
-	public Productos(Proveedores proveedor, String nombre, BigDecimal precioUnitario, int stockActual,
-			int stockMinimo) {
+	public Productos(int proveedor, String nombre, BigDecimal precioUnitario, int stockActual, int stockMinimo) {
 		this.proveedor = proveedor;
 		this.nombre = nombre;
 		this.precioUnitario = precioUnitario;
@@ -72,9 +60,8 @@ public class Productos implements java.io.Serializable {
 		this.stockMinimo = stockMinimo;
 	}
 
-	public Productos(Proveedores proveedor, String nombre, String descripcion, byte[] foto, BigDecimal precioUnitario,
-			int stockActual, int stockMinimo, boolean habilitado, Set<Movimientos> movimientos,
-			Set<DetallesAlbaran> detallesAlbaran) {
+	public Productos(int proveedor, String nombre, String descripcion, byte[] foto, BigDecimal precioUnitario,
+			int stockActual, int stockMinimo, boolean habilitado) {
 		this.proveedor = proveedor;
 		this.nombre = nombre;
 		this.descripcion = descripcion;
@@ -83,8 +70,7 @@ public class Productos implements java.io.Serializable {
 		this.stockActual = stockActual;
 		this.stockMinimo = stockMinimo;
 		this.habilitado = habilitado;
-		this.movimientos = movimientos;
-		this.detallesAlbaran = detallesAlbaran;
+
 	}
 
 	public int getIdProducto() {
@@ -95,11 +81,11 @@ public class Productos implements java.io.Serializable {
 		this.idProducto = idProducto;
 	}
 
-	public Proveedores getProveedor() {
+	public int getProveedor() {
 		return proveedor;
 	}
 
-	public void setProveedor(Proveedores proveedor) {
+	public void setProveedor(int proveedor) {
 		this.proveedor = proveedor;
 	}
 
@@ -159,19 +145,4 @@ public class Productos implements java.io.Serializable {
 		this.habilitado = habilitado;
 	}
 
-	public Set<Movimientos> getMovimientos() {
-		return movimientos;
-	}
-
-	public void setMovimientos(Set<Movimientos> movimientos) {
-		this.movimientos = movimientos;
-	}
-
-	public Set<DetallesAlbaran> getDetallesAlbaran() {
-		return detallesAlbaran;
-	}
-
-	public void setDetallesAlbaran(Set<DetallesAlbaran> detallesAlbaran) {
-		this.detallesAlbaran = detallesAlbaran;
-	}
 }
