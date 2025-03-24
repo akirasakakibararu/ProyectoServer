@@ -7,7 +7,7 @@ import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
 @EntityScan(basePackages = "pojos") 
-@ComponentScan(basePackages = {"service", "controller"})
+@ComponentScan(basePackages = {"service", "controller","security"})
 public class ServerApplication {
 
 	public static void main(String[] args) {
