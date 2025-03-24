@@ -25,7 +25,7 @@ public class WebSecurityConfig {
         http
             .csrf(csrf -> csrf.disable())
             .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/auth/register", "/auth/login").permitAll() // Permitir acceso sin autenticacin
+                .requestMatchers("/auth/register", "/auth/login","/usuarios").permitAll() // Permitir acceso sin autenticacin
                 .anyRequest().authenticated()
             )
             .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
