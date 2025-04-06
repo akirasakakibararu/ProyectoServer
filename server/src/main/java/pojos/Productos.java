@@ -31,10 +31,9 @@ public class Productos implements java.io.Serializable {
 	@Column(name = "descripcion", columnDefinition = "TEXT")
 	private String descripcion;
 
-	@Lob
+	
 	@Column(name = "foto")
-	@JsonIgnore
-	private byte[] foto;
+	private String foto;
 
 	@Column(name = "precio_unitario", nullable = false, precision = 10, scale = 2)
 
@@ -60,7 +59,7 @@ public class Productos implements java.io.Serializable {
 		this.stockMinimo = stockMinimo;
 	}
 
-	public Productos(int proveedor, String nombre, String descripcion, byte[] foto, BigDecimal precioUnitario,
+	public Productos(int proveedor, String nombre, String descripcion, String foto, BigDecimal precioUnitario,
 			int stockActual, int stockMinimo, boolean habilitado) {
 		this.proveedor = proveedor;
 		this.nombre = nombre;
@@ -105,11 +104,11 @@ public class Productos implements java.io.Serializable {
 		this.descripcion = descripcion;
 	}
 
-	public byte[] getFoto() {
+	public String getFoto() {
 		return foto;
 	}
 
-	public void setFoto(byte[] foto) {
+	public void setFoto(String foto) {
 		this.foto = foto;
 	}
 
