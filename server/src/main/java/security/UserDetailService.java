@@ -10,8 +10,6 @@ import com.example.server.UserRepository;
 
 import pojos.Usuarios;
 
-
-
 @Service
 public class UserDetailService implements UserDetailsService {
 

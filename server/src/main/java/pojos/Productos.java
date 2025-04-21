@@ -22,16 +22,12 @@ public class Productos implements java.io.Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idProducto;
 
-	@Column(name = "id_proveedor", nullable = false)
-	private int proveedor;
-
 	@Column(name = "nombre", nullable = false, length = 100)
 	private String nombre;
 
 	@Column(name = "descripcion", columnDefinition = "TEXT")
 	private String descripcion;
 
-	
 	@Column(name = "foto")
 	private String foto;
 
@@ -51,17 +47,17 @@ public class Productos implements java.io.Serializable {
 	public Productos() {
 	}
 
-	public Productos(int proveedor, String nombre, BigDecimal precioUnitario, int stockActual, int stockMinimo) {
-		this.proveedor = proveedor;
+	public Productos(String nombre, BigDecimal precioUnitario, int stockActual, int stockMinimo) {
+
 		this.nombre = nombre;
 		this.precioUnitario = precioUnitario;
 		this.stockActual = stockActual;
 		this.stockMinimo = stockMinimo;
 	}
 
-	public Productos(int proveedor, String nombre, String descripcion, String foto, BigDecimal precioUnitario,
-			int stockActual, int stockMinimo, boolean habilitado) {
-		this.proveedor = proveedor;
+	public Productos(String nombre, String descripcion, String foto, BigDecimal precioUnitario, int stockActual,
+			int stockMinimo, boolean habilitado) {
+
 		this.nombre = nombre;
 		this.descripcion = descripcion;
 		this.foto = foto;
@@ -78,14 +74,6 @@ public class Productos implements java.io.Serializable {
 
 	public void setIdProducto(int idProducto) {
 		this.idProducto = idProducto;
-	}
-
-	public int getProveedor() {
-		return proveedor;
-	}
-
-	public void setProveedor(int proveedor) {
-		this.proveedor = proveedor;
 	}
 
 	public String getNombre() {
