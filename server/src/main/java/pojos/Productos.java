@@ -54,7 +54,17 @@ public class Productos implements java.io.Serializable {
 		this.stockActual = stockActual;
 		this.stockMinimo = stockMinimo;
 	}
+	public Productos(String nombre, String descripcion, String foto, BigDecimal precioUnitario, int stockActual,
+			int stockMinimo) {
 
+		this.nombre = nombre;
+		this.descripcion = descripcion;
+		this.foto = foto;
+		this.precioUnitario = precioUnitario;
+		this.stockActual = stockActual;
+		this.stockMinimo = stockMinimo;
+
+	}
 	public Productos(String nombre, String descripcion, String foto, BigDecimal precioUnitario, int stockActual,
 			int stockMinimo, boolean habilitado) {
 

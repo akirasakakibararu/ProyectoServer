@@ -52,7 +52,7 @@ public class Usuarios implements java.io.Serializable {
 		this.contrasena = contrasena;
 	}
 
-	public Usuarios(String contrasena, String nombre, String email, Rol rol) {
+	public Usuarios( String nombre, String contrasena,String email, Rol rol) {
 		this.contrasena = contrasena;
 		this.nombre = nombre;
 		this.email = email;

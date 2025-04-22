@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import pojos.Productos;
-import pojos.Usuarios;
 import service.ProductoService;
 
 @RestController
@@ -54,8 +53,25 @@ public class ProductoController {
 	    String mensajeR;
 	    if(actualizados) {
 	    	mensajeR="Producto añadido correctamente";
+	    	System.out.println(mensajeR);
 	    }else {
 	    	mensajeR="Error al añadir el producto";
+	    	System.out.println(mensajeR);
+	    }
+	    
+	    return mensajeR;
+	       
+	}
+	@PostMapping("/editar/producto")
+	public String editarProducto(@RequestBody Productos productos) {
+	    boolean actualizados = productService.anadirProducto(productos);
+	    String mensajeR;
+	    if(actualizados) {
+	    	mensajeR="Producto editado correctamente";
+	    	System.out.println(mensajeR);
+	    }else {
+	    	mensajeR="Error al editar el producto";
+	    	System.out.println(mensajeR);
 	    }
 	    
 	    return mensajeR;
