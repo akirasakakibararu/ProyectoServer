@@ -73,7 +73,6 @@ public class ProductoController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error al aumentar el stock.");
         }
     }
- // Disminuir stock con cantidad específica
     @PostMapping("/{id}/disminuirStock")
     public ResponseEntity<?> disminuirStock(@PathVariable int id) {
         try {

@@ -12,22 +12,13 @@ public class AuthController {
     @Autowired
     private UserService userService;
 
-    // Mantén @RequestParam
-    @PostMapping("/login")
-    public String login(
-        @RequestParam String username,
-        @RequestParam String password  // Envía contraseña PLANA (no hash)
-    ) {
-        return userService.authenticateUser(username, password);
+    @PostMapping("/register")
+    public String register(@RequestParam String username, @RequestParam String password, @RequestParam String email, @RequestParam Rol rol) {
+        return userService.registerUser(username, password,email,rol);
     }
 
-    @PostMapping("/register")
-    public String register(
-        @RequestParam String username,
-        @RequestParam String password,
-        @RequestParam String email,
-        @RequestParam Rol rol
-    ) {
-        return userService.registerUser(username, password, email, rol);
+    @PostMapping("/login")
+    public String login(@RequestParam String username, @RequestParam String password) {
+        return userService.authenticateUser(username, password);
     }
 }

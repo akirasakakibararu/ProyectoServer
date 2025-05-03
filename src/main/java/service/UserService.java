@@ -14,6 +14,8 @@ import com.example.server.UserRepository;
 import pojos.Usuarios;
 import pojos.Usuarios.Rol;
 import security.JwtUtil;
+
+
 @Service
 public class UserService {
     
@@ -62,16 +64,16 @@ public class UserService {
 
     public String authenticateUser(String username, String password) {
         Usuarios usuario = userRe.findByNombre(username);
-        System.out.println(username + " === " + password);
-        
+        System.out.println(username + "==="+password);
         if (usuario == null) {
-            throw new RuntimeException("Usuario no encontrado"+password);
+            throw new RuntimeException("Usuario no encontrado");
         }
 
-        // Comparar la contraseña en texto plano con la contraseña encriptada almacenada
+        // Comparar la contraseña encriptada con la ingresada
         if (!passwordEncoder.matches(password, usuario.getContrasena())) {
             throw new RuntimeException("Contraseña incorrecta");
         }
+
 
         // Crear UserDetails correctamente
         UserDetails userDetails = new User(username, usuario.getContrasena(), new java.util.ArrayList<>());
@@ -79,5 +81,4 @@ public class UserService {
         // Generar token JWT
         return jwtUtil.generateToken(userDetails.getUsername());
     }
-
 }

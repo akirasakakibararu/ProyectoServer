@@ -22,9 +22,9 @@ public class Productos implements java.io.Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idProducto;
 
-	@Column(name = "id_proveedor", nullable = false)
+	/*@Column(name = "id_proveedor", nullable = false)
 	private int proveedor;
-
+*/
 	@Column(name = "nombre", nullable = false, length = 100)
 	private String nombre;
 
@@ -53,7 +53,7 @@ public class Productos implements java.io.Serializable {
 	}
 
 	public Productos(int proveedor, String nombre, BigDecimal precioUnitario, int stockActual, int stockMinimo) {
-		this.proveedor = proveedor;
+		//this.proveedor = proveedor;
 		this.nombre = nombre;
 		this.precioUnitario = precioUnitario;
 		this.stockActual = stockActual;
@@ -62,7 +62,7 @@ public class Productos implements java.io.Serializable {
 
 	public Productos(int proveedor, String nombre, String descripcion, byte[] foto, BigDecimal precioUnitario,
 			int stockActual, int stockMinimo, boolean habilitado) {
-		this.proveedor = proveedor;
+		//this.proveedor = proveedor;
 		this.nombre = nombre;
 		this.descripcion = descripcion;
 		this.foto = foto;
@@ -80,14 +80,14 @@ public class Productos implements java.io.Serializable {
 	public void setIdProducto(int idProducto) {
 		this.idProducto = idProducto;
 	}
-
+/*
 	public int getProveedor() {
 		return proveedor;
 	}
 
 	public void setProveedor(int proveedor) {
 		this.proveedor = proveedor;
-	}
+	}*/
 
 	public String getNombre() {
 		return nombre;
