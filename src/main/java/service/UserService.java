@@ -11,6 +11,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import com.example.server.UserRepository;
 
+import pojos.Productos;
 import pojos.Usuarios;
 import pojos.Usuarios.Rol;
 import security.JwtUtil;
@@ -44,6 +45,8 @@ public class UserService {
     }
 
     public Usuarios guardar(Usuarios usuario) {
+    	 String encodedPassword = passwordEncoder.encode(usuario.getContrasena());
+    	 usuario.setContrasena(encodedPassword);
         return userRe.save(usuario);
     }
     public String registerUser(String username, String password, String email,Rol rol) {
@@ -80,5 +83,13 @@ public class UserService {
 
         // Generar token JWT
         return jwtUtil.generateToken(userDetails.getUsername());
+    }
+    // Actualizar un producto
+    public Usuarios actualizarUsuario(Usuarios usuario) {
+        return userRe.save(usuario);
+    }
+    // Eliminar producto
+    public void eliminarUsuario(int id) {
+    	userRe.deleteById(id);
     }
 }

@@ -15,8 +15,7 @@ public class Albaranes implements java.io.Serializable {
     private int idAlbaran;
 
     @Column(name = "foto")
-    @Lob
-    private byte[] fotoAlbaran;
+    private String fotoAlbaran;
 
     @Column(name = "nif", nullable = false, length = 50)
     private String nif;
@@ -42,7 +41,7 @@ public class Albaranes implements java.io.Serializable {
         this.fechaAlbaran = fechaAlbaran;
     }
 
-    public Albaranes(String nif, Timestamp fechaAlbaran, byte[] fotoAlbaran, EstadoAlbaran estado) {
+    public Albaranes(String nif, Timestamp fechaAlbaran, String fotoAlbaran, EstadoAlbaran estado) {
         this.nif = nif;
         this.fechaAlbaran = fechaAlbaran;
         this.fotoAlbaran = fotoAlbaran;
@@ -57,11 +56,11 @@ public class Albaranes implements java.io.Serializable {
         this.idAlbaran = idAlbaran;
     }
 
-    public byte[] getFotoAlbaran() {
+    public String getFotoAlbaran() {
         return fotoAlbaran;
     }
 
-    public void setFotoAlbaran(byte[] fotoAlbaran) {
+    public void setFotoAlbaran(String fotoAlbaran) {
         this.fotoAlbaran = fotoAlbaran;
     }
 
