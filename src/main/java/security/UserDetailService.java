@@ -7,9 +7,8 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Service;
 
-import com.example.server.UserRepository;
-
 import pojos.Usuarios;
+import repository.UserRepository;
 
 import java.util.List;
 

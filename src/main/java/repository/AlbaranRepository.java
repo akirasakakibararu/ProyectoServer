@@ -1,7 +1,9 @@
-package com.example.server;
+package repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import pojos.Albaranes;
+import org.springframework.stereotype.Repository;
 
+import pojos.Albaranes;
+@Repository
 public interface AlbaranRepository extends JpaRepository<Albaranes, Integer> {
 }

@@ -6,11 +6,11 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
 import pojos.Albaranes;
 import pojos.Productos;
+import repository.AlbaranRepository;
 import service.AlbaranService;
-
-import com.example.server.AlbaranRepository;
 
 @RestController
 @RequestMapping("/api/albaranes")

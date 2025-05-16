@@ -34,33 +34,26 @@ public class Movimientos implements java.io.Serializable {
 
 	private int producto;
 
-	@Column(name = "id_albaran", nullable = false)
-	private int albaran;
-
 	@Enumerated(EnumType.STRING)
 	@Column(nullable = false, length = 100)
 	private TipoMovimiento tipo;
-
-	@Column(nullable = false)
-	private int cantidad;
 
 	@Column(name = "fecha_movimiento", nullable = false)
 	private Timestamp fechaMovimiento;
 
 	public enum TipoMovimiento {
-		Alta, Baja
+		Mas, Menos
 	}
 
 	public Movimientos() {
 	}
 
-	public Movimientos(int usuarios, int productos, int albaranes, TipoMovimiento tipo, int cantidad,
-			Timestamp fechaMovimiento) {
+	public Movimientos(int usuarios, int productos, TipoMovimiento tipo, Timestamp fechaMovimiento) {
 		this.usuario = usuarios;
 		this.producto = productos;
-		this.albaran = albaranes;
+
 		this.tipo = tipo;
-		this.cantidad = cantidad;
+
 		this.fechaMovimiento = fechaMovimiento;
 	}
 
@@ -88,28 +81,12 @@ public class Movimientos implements java.io.Serializable {
 		this.producto = productos;
 	}
 
-	public int getAlbaranes() {
-		return this.albaran;
-	}
-
-	public void setAlbaranes(int albaranes) {
-		this.albaran = albaranes;
-	}
-
 	public TipoMovimiento getTipo() {
 		return this.tipo;
 	}
 
 	public void setTipo(TipoMovimiento tipo) {
 		this.tipo = tipo;
-	}
-
-	public int getCantidad() {
-		return this.cantidad;
-	}
-
-	public void setCantidad(int cantidad) {
-		this.cantidad = cantidad;
 	}
 
 	public Timestamp getFechaMovimiento() {

@@ -9,11 +9,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import com.example.server.UserRepository;
-
 import pojos.Productos;
 import pojos.Usuarios;
 import pojos.Usuarios.Rol;
+import repository.UserRepository;
 import security.JwtUtil;
 
 

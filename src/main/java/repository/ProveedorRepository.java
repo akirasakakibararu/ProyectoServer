@@ -1,7 +1,9 @@
-package com.example.server;
+package repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import pojos.Proveedores;
+import org.springframework.stereotype.Repository;
 
+import pojos.Proveedores;
+@Repository
 public interface ProveedorRepository extends JpaRepository<Proveedores, Integer> {
 }
