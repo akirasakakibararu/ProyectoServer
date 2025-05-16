@@ -84,6 +84,20 @@ public class UserService {
         // Generar token JWT
         return jwtUtil.generateToken(userDetails.getUsername());
     }
+    public String authenticateUser(String username) {
+        Usuarios usuario = userRe.findByNombre(username);
+        System.out.println(username + "===");
+        if (usuario == null) {
+            throw new RuntimeException("Usuario no encontrado");
+        }
+
+  
+        // Crear UserDetails correctamente
+        UserDetails userDetails = new User(username,"", new java.util.ArrayList<>());
+
+        // Generar token JWT
+        return jwtUtil.generateToken(userDetails.getUsername());
+    }
     // Actualizar un producto
     public Usuarios actualizarUsuario(Usuarios usuario) {
         return userRe.save(usuario);
