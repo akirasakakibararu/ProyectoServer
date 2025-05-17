@@ -51,9 +51,7 @@ public class Movimientos implements java.io.Serializable {
 	public Movimientos(int usuarios, int productos, TipoMovimiento tipo, Timestamp fechaMovimiento) {
 		this.usuario = usuarios;
 		this.producto = productos;
-
 		this.tipo = tipo;
-
 		this.fechaMovimiento = fechaMovimiento;
 	}
 
