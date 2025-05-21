@@ -2,6 +2,7 @@ package controller;
 
  
 import pojos.Productos;
+import service.EmailService;
 import service.ProductoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.CrudRepository;
@@ -9,7 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import com.example.server.ProductoRepository;
+import repository.ProductoRepository;
 
 import java.util.List;
 import java.util.Map;
@@ -82,7 +83,58 @@ public class ProductoController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error al disminuir el stock.");
         }
     }
- 
+    @Autowired
+    private ProductoService productosService;
+
+    @Autowired
+    private EmailService emailService;
+
+    @GetMapping("/inventario")
+    public ResponseEntity<List<Productos>> obtenerInventario(
+            @RequestParam(required = false) String filtro) {
+
+        List<Productos> productos;
+
+        switch (filtro != null ? filtro : "") {
+            case "minimos":
+                productos = productosService.obtenerPorStockMinimo();
+                break;
+            case "deshabilitados":
+                productos = productosService.obtenerDeshabilitados();
+                break;
+            default:
+                productos = productosService.obtenerTodos();
+                break;
+        }
+
+        return ResponseEntity.ok(productos);
+    }
+
+    @PostMapping("/inventario/enviar")
+    public ResponseEntity<String> enviarInventarioPorCorreo(
+            @RequestParam String email,
+            @RequestParam(required = false) String filtro) {
+
+        List<Productos> productos;
+
+        switch (filtro != null ? filtro : "") {
+            case "minimos":
+                productos = productosService.obtenerPorStockMinimo();
+                break;
+            case "deshabilitados":
+                productos = productosService.obtenerDeshabilitados();
+                break;
+            default:
+                productos = productosService.obtenerTodos();
+                break;
+        }
+
+        boolean enviado = emailService.enviarInventarioConExcel(email, productos);
+
+        return enviado ?
+                ResponseEntity.ok("Correo enviado correctamente") :
+                ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error al enviar el correo");
+    }
 
 
 

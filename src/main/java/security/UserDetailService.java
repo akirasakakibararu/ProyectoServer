@@ -7,13 +7,11 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Service;
 
-import com.example.server.UserRepository;
-
+import repository.UserRepository;
 import pojos.Usuarios;
 
 import java.util.List;
-
-@Service
+ @Service
 public class UserDetailService implements UserDetailsService {
 
     @Autowired

@@ -14,13 +14,20 @@
     <version>0.0.1-SNAPSHOT</version>
     <name>server</name>
     <description>Servidor de la aplicación móvil</description>
-
+ 
     <properties>
         <java.version>17</java.version>
     </properties>
 
        <dependencies>
-        <!-- Spring Boot Starters -->
+           <!-- Spring Boot Starters -->
+
+		    <dependency>
+        <groupId>com.itextpdf</groupId>
+        <artifactId>itext7-core</artifactId>
+        <version>8.0.0</version> <!-- O usa una versión estable más reciente -->
+        <type>pom</type>
+    </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
@@ -89,6 +96,17 @@
     <version>0.4</version>
 </dependency>
 
+    <dependency>
+            <groupId>com.sun.mail</groupId>
+            <artifactId>javax.mail</artifactId>
+            <version>1.6.2</version>
+        </dependency>
+        
+        <dependency>
+    <groupId>org.apache.poi</groupId>
+    <artifactId>poi-ooxml</artifactId>
+    <version>5.2.3</version>
+</dependency>
     </dependencies>
 
     <build>
@@ -97,6 +115,7 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
+ 
         </plugins>
     </build>
 </project>

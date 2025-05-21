@@ -33,8 +33,7 @@ public class Productos implements java.io.Serializable {
 
 	@Lob
 	@Column(name = "foto")
-	@JsonIgnore
-	private byte[] foto;
+ 	private byte[] foto;
 
 	@Column(name = "precio_unitario", nullable = false, precision = 10, scale = 2)
 

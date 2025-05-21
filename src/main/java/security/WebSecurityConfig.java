@@ -25,7 +25,7 @@ public class WebSecurityConfig {
         http
             .csrf(csrf -> csrf.disable())
             .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/auth/register", "/auth/login", "/usuarios").permitAll()
+                .requestMatchers("/auth/register", "/auth/login", "/usuarios" ).permitAll()
                  .anyRequest().authenticated()
             )
             .formLogin(login -> login.disable()) // <- desactivar formulario por defecto

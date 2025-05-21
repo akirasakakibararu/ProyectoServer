@@ -1,14 +1,10 @@
 package service;
 
- 
 import pojos.Productos;
-import com.example.server.ProductoRepository;
+import repository.ProductoRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 import java.util.Optional;
@@ -34,7 +30,7 @@ public class ProductoService {
         return productoRepository.findByNombreContainingIgnoreCase(nombre);
     }
 
-    // Obtener producto por id
+    // Obtener producto por ID
     public Optional<Productos> obtenerProductoPorId(int id) {
         return productoRepository.findById(id);
     }
@@ -50,28 +46,35 @@ public class ProductoService {
     }
 
     // Aumentar stock
-    public void aumentarStock(int id ) throws Exception {
-        Productos producto = productoRepository.findById(id).orElseThrow(() -> new RuntimeException("Producto no encontrado"));
+    public void aumentarStock(int id) {
+        Productos producto = productoRepository.findById(id)
+            .orElseThrow(() -> new RuntimeException("Producto no encontrado"));
 
-        // Incrementar el stock actual en una unidad
         producto.setStockActual(producto.getStockActual() + 1);
-        
-        // Guardar el producto actualizado en la base de datos
-        productoRepository.save(producto);
-    }
-    public void disminuirStock(int id ) throws Exception {
-        Productos producto = productoRepository.findById(id).orElseThrow(() -> new RuntimeException("Producto no encontrado"));
-
-        // Incrementar el stock actual en una unidad
-        producto.setStockActual(producto.getStockActual() -1 );
-        
-        // Guardar el producto actualizado en la base de datos
         productoRepository.save(producto);
     }
 
- // Disminuir stock con cantidad específica
+    // Disminuir stock
+    public void disminuirStock(int id) {
+        Productos producto = productoRepository.findById(id)
+            .orElseThrow(() -> new RuntimeException("Producto no encontrado"));
 
+        producto.setStockActual(producto.getStockActual() - 1);
+        productoRepository.save(producto);
+    }
 
- 
+    // Obtener todos (para inventario)
+    public List<Productos> obtenerTodos() {
+        return productoRepository.findAll();
+    }
 
+    // Obtener productos con stock mínimo
+    public List<Productos> obtenerPorStockMinimo() {
+    	return productoRepository.findProductosConStockMenorOIgualAlMinimo();
+    }
+
+    // Obtener productos deshabilitados
+    public List<Productos> obtenerDeshabilitados() {
+        return productoRepository.findByHabilitadoFalse();
+    }
 }
