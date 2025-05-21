@@ -6,14 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
-import repository.UserRepository;
-
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import pojos.Productos;
 import pojos.Usuarios;
 import pojos.Usuarios.Rol;
+import repository.UserRepository;
 import security.JwtUtil;
 
 
@@ -45,6 +44,8 @@ public class UserService {
     }
 
     public Usuarios guardar(Usuarios usuario) {
+    	 String encodedPassword = passwordEncoder.encode(usuario.getContrasena());
+    	 usuario.setContrasena(encodedPassword);
         return userRe.save(usuario);
     }
     public String registerUser(String username, String password, String email,Rol rol) {
@@ -75,11 +76,28 @@ public class UserService {
             throw new RuntimeException("Contraseña incorrecta");
         }
 
-
-        // Crear UserDetails correctamente
         UserDetails userDetails = new User(username, usuario.getContrasena(), new java.util.ArrayList<>());
+
+        return jwtUtil.generateToken(userDetails.getUsername());
+    }
+    public String authEmpleado(String username) {
+        Usuarios usuario = userRe.findByNombre(username);
+        System.out.println(username);
+        if (usuario == null) {
+            throw new RuntimeException("Usuario no encontrado");
+        }
+        // Crear UserDetails correctamente
+        UserDetails userDetails = new User(username,"", new java.util.ArrayList<>());
 
         // Generar token JWT
         return jwtUtil.generateToken(userDetails.getUsername());
+    }
+    // Actualizar un producto
+    public Usuarios actualizarUsuario(Usuarios usuario) {
+        return userRe.save(usuario);
+    }
+    // Eliminar producto
+    public void eliminarUsuario(int id) {
+    	userRe.deleteById(id);
     }
 }
