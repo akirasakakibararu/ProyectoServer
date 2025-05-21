@@ -28,8 +28,8 @@ public class EmailService {
     private final InformeService informeService;
 
     // Configuración SMTP
-    private static final String SMTP_USER = "donapp662@gmail.com";
-    private static final String SMTP_PASS = "qwsg zmqt dtqh erbt";
+    private static final String SMTP_USER = "danieledgar.caballerohu@elorrieta-errekamari.com";
+    private static final String SMTP_PASS = "vxzq innv tlmx xood";
     private static final String SMTP_HOST = "smtp.gmail.com";
     private static final int SMTP_PORT = 587;
 

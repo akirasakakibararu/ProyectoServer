@@ -94,6 +94,8 @@ public class UserService {
     }
     // Actualizar un producto
     public Usuarios actualizarUsuario(Usuarios usuario) {
+    	  String encodedPassword = passwordEncoder.encode(usuario.getContrasena());
+    	  usuario.setContrasena(encodedPassword);
         return userRe.save(usuario);
     }
     // Eliminar producto
